@@ -2,9 +2,313 @@
 .attribution {
     font-size: 11px;
     text-align: center;
+    background-color: #fff;
 }
 .attribution a {
     color: hsl(228, 45%, 44%);
 }
 
 /* Custom CSS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+#container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#monthlyPricing {
+    display: none;
+}
+
+.monthlyPrice {
+    display: none;
+}
+
+/* Adjust which pricing is shown */
+#monthlyPricing:checked ~ #pricingSection .yearlyPrice {
+    display: none;
+}
+
+/* Adjust which pricing is shown */
+#monthlyPricing:checked ~ #pricingSection .monthlyPrice {
+    display: inline-block;
+}
+
+/* Page header */
+#pageHeader {
+    color: hsl(233, 13%, 49%);
+}
+
+#pageTitle {
+    font-size: 30px;
+}
+
+#priceToggleSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+}
+
+.priceToggleText {
+    display: inline-block;
+    margin: 0;
+}
+
+.priceToggleText:first-of-type {
+    margin-right: 10px;
+}
+
+.priceToggleText:last-of-type {
+    margin-left: 10px;
+}
+
+/* Price toggle */
+#priceToggle {
+    height: 28px;
+    width: 50px;
+    background-color: hsl(234, 14%, 74%);
+    position: relative;
+    display: inline-block;
+    border-radius: 1000px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#priceToggle:hover {
+    background-color: hsl(234, 19%, 84%);
+}
+
+#priceToggle::before {
+    height: 28px;
+    width: 50px;
+    content: "";
+    background: linear-gradient(
+        to bottom right,
+        hsl(236, 72%, 79%),
+        hsl(237, 63%, 64%)
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 1000px;
+    opacity: 0;
+    transition: 0.25s;
+}
+
+#priceToggle:hover::before {
+    background: linear-gradient(
+        to bottom right,
+        hsl(236, 100%, 91%),
+        hsl(237, 50%, 73%)
+    );
+}
+
+#priceToggle::after {
+    height: 22px;
+    width: 22px;
+    content: "";
+    border-radius: 1000px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-color: #fff;
+    transition: 0.25s;
+}
+
+/* Toggle animation */
+#monthlyPricing:checked + #pageHeader #priceToggle::before {
+    opacity: 1;
+}
+
+#monthlyPricing:checked + #pageHeader #priceToggle::after {
+    left: 25px;
+}
+
+/* Pricing section*/
+#pricingSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.pricingCard {
+    background-color: #fff;
+    padding: 30px;
+    width: 300px;
+    max-width: 300px;
+    color: hsl(232, 13%, 33%);
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+.pricingCard:nth-of-type(1) {
+    border-radius: 10px 0 0 10px;
+}
+
+.pricingCard:nth-of-type(3) {
+    border-radius: 0 10px 10px 0;
+}
+
+.cardFocus {
+    background: linear-gradient(
+        to bottom right,
+        hsl(236, 72%, 79%),
+        hsl(237, 63%, 64%)
+    );
+    color: #fff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    z-index: 100000;
+}
+
+.pricingTitle {
+    margin-top: 0;
+}
+
+.pricingTag {
+    font-size: 30px;
+    color: hsl(232, 13%, 33%);
+}
+
+.cardFocus .pricingTag {
+    color: #fff;
+}
+
+.pricingTag span {
+    font-size: 40px;
+}
+
+.cardDivider {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(234, 14%, 74%);
+}
+
+.cardFeature {
+    color: hsl(233, 13%, 49%);
+    font-size: 12px;
+}
+
+.cardFocus .cardFeature {
+    color: #fff;
+}
+
+.cardButton {
+    background: linear-gradient(
+        to bottom right,
+        hsl(236, 72%, 79%),
+        hsl(237, 63%, 64%)
+    );
+    border: none;
+    border: 1px solid #fff;
+
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 2em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.cardButton:hover {
+    background: rgba(0, 0, 0, 0);
+    color: hsl(237, 63%, 64%);
+    border: 1px solid hsl(237, 63%, 64%);
+}
+
+.cardFocus .cardButton {
+    background: #fff;
+    color: hsl(237, 63%, 64%);
+}
+
+.cardFocus .cardButton:hover {
+    background-color: unset;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+/* Background styling */
+#backgroundImages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: hsl(240, 78%, 98%);
+}
+
+.backgroundImage {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+}
+
+#backgroundTop {
+    background-image: url("images/bg-top.svg");
+    background-position: top right;
+}
+
+#backgroundBottom {
+    background-image: url("images/bg-bottom.svg");
+    background-position: bottom left;
+}
+
+/* Responsiveness */
+@media (max-width: 920px) {
+    #pricingSection {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .pricingCard {
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 80%;
+        border-radius: 10px !important;
+    }
+
+    #container {
+        height: unset;
+        background-image: url("images/bg-top.svg");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-color: hsl(240, 78%, 98%);
+        padding-bottom: 50px;
+    }
+
+    #backgroundImages {
+        display: none;
+    }
+
+    #backgroundBottom {
+        display: none;
+    }
+}
